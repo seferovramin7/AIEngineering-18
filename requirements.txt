@@ -1,0 +1,6 @@
+# Optional: Only needed for training/augmentation demos
+# On Apple Silicon (M1/M2):
+#   pip install tensorflow-macos tensorflow-metal
+# On Intel/macOS or Linux/Windows (CPU):
+#   pip install tensorflow
+
