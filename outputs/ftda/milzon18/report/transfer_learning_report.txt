@@ -1,0 +1,30 @@
+transfer_learning_report.txt
+Author: Milzon
+Date: [YYYY-MM-DD]
+
+Title: Transfer Learning & Data Augmentation – Fine-Tuning Depth Study
+(2 epochs, image_size=160)
+
+Setup
+- Python 3.9+, TensorFlow (sesuai README_APP.md)
+- Backbone: MobileNetV2 (pretrained ImageNet)
+- Perintah: python app/main.py demo-train --epochs 2 --image-size 160 --train-last-n <N>
+
+Fine-tuning depth yang diuji
+- Last-10 layers trainable (N=10)
+- Last-20 layers trainable (N=20, baseline)
+- Last-40 layers trainable (N=40)
+
+Hasil (final accuracy per 2 epoch)
+- N=10  → train: [0.____] | val: [0.____]
+- N=20  → train: [0.____] | val: [0.____]
+- N=40  → train: [0.____] | val: [0.____]
+
+Apakah validasi membaik selama fine-tuning?
+[Ya/Tidak]. Ringkasan satu kalimat: [contoh: “Val accuracy naik ±[X] poin saat berpindah dari N=10 ke N=20, namun tidak bertambah pada N=40.”]
+
+Interpretasi (≈140–180 kata)
+Dengan N=10, model beradaptasi tipis—umumnya stabil dan relatif tahan overfitting, tetapi kapasitas untuk menangkap fitur domain terbatas sehingga val accuracy cenderung moderat. Pada N=20 (baseline), lebih banyak bobot dibuka sehingga representasi pretrained masih terjaga sementara “zona adaptasi” di blok akhir membantu spesialisasi; pada data kecil/sedang, konfigurasi ini sering memberi trade-off terbaik. Menaikkan ke N=40 membuat train accuracy biasanya meningkat, namun risiko overfitting/catastrophic forgetting juga naik jika augmentasi lemah atau domain tidak terlalu berbeda dari ImageNet. Pada eksperimen ini, setting terbaik untuk val accuracy adalah N=[10/20/40] dengan nilai [0.____]. Dugaan saya, konfigurasi tersebut menjaga mayoritas fitur umum sambil menyesuaikan lapisan atas terhadap distribusi data. Jika jumlah epoch diperpanjang, saya akan menurunkan learning rate setelah unfreeze dan menyalakan early stopping.
+
+Ide augmentasi berikutnya (≈40–60 kata)
+Saya akan menambah color/intensity jitter (brightness/contrast/hue) untuk robust terhadap pencahayaan. Jika kelas saling overlap, gunakan MixUp atau CutMix untuk regularisasi batas keputusan. Untuk tekstur kuat, RandomErasing (cutout) membantu mengurangi ketergantungan pada patch lokal spesifik.
