@@ -1,0 +1,10 @@
+{
+  "train_accuracy": 0.799311101436615,
+  "val_accuracy": 0.8464000225067139,
+  "epochs": 2,
+  "image_size": 160,
+  "batch_size": 32,
+  "train_last_n": 10,
+  "backbone": "mobilenetv2",
+  "learning_rate": 0.0001
+}
