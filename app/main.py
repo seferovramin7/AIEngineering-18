@@ -2,6 +2,7 @@
 import argparse
 import sys
 from textwrap import dedent
+from typing import Optional
 
 
 def explain() -> None:
@@ -56,7 +57,7 @@ def demo_augment(sample_count: int = 4) -> None:
 
 
 
-def demo_train(epochs: int = 1, image_size: int = 160, data_dir: str | None = None) -> None:
+def demo_train(epochs: int = 1, image_size: int = 160, data_dir: Optional[str] = None) -> None:
     try:
         import tensorflow as tf
     except Exception as exc:
