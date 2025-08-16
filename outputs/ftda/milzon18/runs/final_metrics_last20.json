@@ -1,6 +1,6 @@
 {
-  "train_accuracy": 0.8302222490310669,
-  "val_accuracy": 0.8877999782562256,
+  "train_accuracy": 0.8281111121177673,
+  "val_accuracy": 0.8804000020027161,
   "epochs": 2,
   "image_size": 160,
   "batch_size": 32,
